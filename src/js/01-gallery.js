@@ -7,12 +7,12 @@ import { galleryItems } from './gallery-items';
 
 console.log(galleryItems);
 
-const galleryContent = document.querySelector('.gallery')
-const galleryList = createGalleryItems(galleryItems);
+const galleryContainer = document.querySelector('.gallery')
+const gallaryList = makeGalleryItems(galleryItems);
 
-galleryContent.insertAdjacentHTML('beforeend', galleryList)
+galleryContainer.insertAdjacentHTML('beforeend', gallaryList)
 
-function createGalleryItems(items) {
+function makeGalleryItems(items) {
     return items.map(({preview, original, description}) => {
         return `<div class="gallery__item">
         <a class="gallery__link" href='${original}'>
@@ -28,10 +28,13 @@ function createGalleryItems(items) {
     .join('');
 }
 
-galleryList.addEventListener('click', openModal);
-
 function openModal(e) {
     e.preventDefault();
 };
 
-new SimpleLightbox('.gallery a', { captionsData: "alt", captionDelay: 250 });
+const galleryBox = new SimpleLightbox('.gallery a', {
+    captionDelay: 250,
+    captionsData: 'alt'
+
+});
+
